@@ -99,7 +99,7 @@
 
 		var enemies=[{x:50, y:50},{x:250, y:50}, {x:450, y:50}, {x:530, y:50}];
 
-		var wavey=[{x:100, y:50}];
+		var wavey=[' '];
 
 		var bullets=[];
 		
@@ -112,50 +112,60 @@
 		function boomEnemies(x,y){
 			document.getElementById('boom').style['top']=y+"px";
 			document.getElementById('boom').style['left']=x+"px";
-
 			document.getElementById('boom').style['display']="inline-block";
 		
 		}
 		function byeBoom(x,y){
 			document.getElementById('boom').style['display']="none";
 		}
-
-		// function displayWavey(){
-		// 	var output="";
-		// 	for(var i = 0; i < wavey.length; i++){
-		// 		output +="<div class='enemy1' style='top:"+wavey[i].y+"px; left:"+wavey[i].x+"px;'></div>";
-		// 	}
-		// 	document.getElementById('wavey').innerHTML = output;
-		// }
-
-
+		function displayWavey(){
+			var output="";
+			for(var i = 0; i < wavey.length; i++){
+				output +="<div class='enemy1' style='top:"+wavey[i].y+"px; left:"+wavey[i].x+"px;'></div>";
+			}
+			document.getElementById('wavey').innerHTML = output;
+		}
+		
 		// function moveWavey(){
-		// 	for(var j = 0; j < wavey.length; j++){
-		// 		var ran = (Math.random()*100);
-		// 		if (ran >= 50){
-		// 			 move = wavey[j].x -=2.5;
+		// 	for(i = 0; i < wavey.length; i++){
+		// 		wavey[i].y +=2.5;
+		// 		if(wavey[i].y > 670){
+		// 			wavey[i].y=0;
+		// 			wavey[i].x=Math.random()*530;
+				
+		// 		setTimeout(wave2, (Math.random()*2000));
+		// 		function wave2(){ 
+		// 		if(killed > 10 && killed < 100 && wavey.length < 5){
+		// 		wavey[wavey.length] = {X: 0, y: 0};
+		// 		wavey[wavey.length-1].x=Math.random()*530;
+		// 		wavey[wavey.length-1].y=0;
 		// 		}
-		// 		if (ran< 50){
-		// 			move = wavey[j].x +=2.5;
 		// 		}
-		// 		wavey[j].y +=2.5;
-		// 		if(wavey[j].y > 670){
-		// 			wavey[j].y=0;
-		// 			wavey[j].x=Math.random()*530;
-		// 		// 	setTimeout(wavey, (Math.random()*2000));
-		// 		//  function wavey(){ 
-		// 		// if(killed > 10 && killed < 100 && wavey.length < 5){
-		// 		// 	wave = 2;
-		// 		// wavey[wavey.length] = {X: 0, y: 0};
-		// 		// wavey[wavey.length-1].y=0;
-		// 		// wavey[wavey.length-1].x=Math.random()*530;
-		// 		// }
-		// 		//  }
-		// 		// }
-		// }
-		// 	}
-		// }
+				
+				
+				
+				
+		// 		if(RightLeft ==1){
+		// 			wavey[i].x+=2.5;
+		// 			if(wavey[i].x>=540){
+		// 				RightLeft =0;
+		// 			}
+		// 		}
 
+		// 		if (RightLeft == 0){
+		// 			wavey[i].x-=2.5;
+		// 			if(wavey[i].x<=0){
+		// 			RightLeft =1;			
+		// 			}
+					
+		// 		}
+		// 		}
+		// 	}
+
+			
+		// 		}
+		
+			
 		function displayEnemies(){
 			var output="";
 			for(var i = 0; i < enemies.length; i++){
@@ -163,7 +173,48 @@
 			}
 			document.getElementById('enemies').innerHTML = output;
 		}
+		var RightLeft =1;
 		function moveEnemies(){
+			
+
+			for(i = 0; i < wavey.length; i++){
+				wavey[i].x +=2.5;
+				wavey[i].x +=2.5;
+				if(wavey[i].y > 670){
+					wavey[i].y=0;
+					wavey[i].x=Math.random()*530;
+				
+
+					if(RightLeft ==1){
+					wavey[i].x+=2.5;
+					if(wavey[i].x>=540){
+						RightLeft =0;
+					}
+				}
+
+				if (RightLeft == 0){
+					wavey[i].x-=2.5;
+					if(wavey[i].x<=0){
+					RightLeft =1;			
+					}
+					
+				}
+				
+				// setTimeout(wave2, (Math.random()*2000));
+				// function wave2(){ 
+				// if(killed > 10 && killed < 100 && wavey.length < 5){
+				// wavey[wavey.length] = {X: 0, y: 0};
+				// wavey[wavey.length-1].x=Math.random()*530;
+				// wavey[wavey.length-1].y=0;
+				// }
+				// }
+				
+				
+				
+				}
+				
+				
+			}
 			for(var i = 0; i < enemies.length; i++){
 				enemies[i].y +=5;
 				if(enemies[i].y > 670){
@@ -182,16 +233,25 @@
 				 }
 				
 				
-				setTimeout(wavey, (Math.random()*2000));
-				 function wavey(){ 
-				if(killed > 10 && killed < 100 && enemies.length < 20){
+				setTimeout(wave2, (Math.random()*2000));
+				 function wave2(){ 
+
+				if(killed > 10 && killed < 100 && enemies.length < 20 && wavey.length < 5){
 				wave = 2;
 				enemies[enemies.length] = {X: 0, y: 0};
 				enemies[enemies.length-1].y=0;
 				enemies[enemies.length-1].x=Math.random()*530;
-				
+				wavey[wavey.length] = {X: 0, y: 0};
+				wavey[wavey.length-1].x=Math.random()*530;
+				wavey[wavey.length-1].y=0;
+
+			
+
 				}
-				 }
+				}
+				
+				 
+				 
 
 				 setTimeout(wave3, (Math.random()*3000));
 				 function wave3(){ 
@@ -206,6 +266,7 @@
 				}
 			
 		}
+		
 
 		function moveBullets(){
 			for(var i = 0; i < bullets.length; i++){
@@ -262,10 +323,9 @@
 			displayScore();
 			death();
 			displayLives();
-			// displayWavey();
 			// moveWavey();
-
-
+			displayWavey();
+			
 		}
 		
 		setInterval(gameloop, 20);
@@ -298,6 +358,33 @@
 					
 					}
 			}
+			for(var i = 0; i < bullets.length; i++){
+				for(var j = 0; j <wavey.length; j++){
+					if(Math.abs(bullets[i].x-wavey[j].x) < 15 && Math.abs(bullets[i].y-wavey[j].y) < 15){
+						score += 30;
+						displayScore();
+						boomEnemies(wavey[j].x,wavey[j].y);
+						wavey.splice(j, 1);
+						bullets.splice(i, 1);
+						killed += 1;
+						setInterval(byeBoom, 2000);
+						
+					}
+					
+				}
+			}
+			for(var j = 0; j <wavey.length; j++){
+				if(Math.abs(hero.x-wavey[j].x) < 15 && Math.abs(hero.y-wavey[j].y) < 15 ){
+						
+						score -= 50;
+						lives.length = lives.length - 1;
+						displayScore();
+						hero.x = 300;
+						hero.y = 600;
+					
+					}
+			}
+			displayLives();
 			displayLives();
 		}
 		
