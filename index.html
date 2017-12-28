@@ -31,6 +31,13 @@
 		height:28px;
 		position:absolute;
 	}
+	.enemy2{
+		background: url('1942.gif');
+		background-position: -60px -10px;
+		width:28px;
+		height:28px;
+		position:absolute;
+	}
 	#boom{
 		background: url('1942.gif');
 		background-position: -30px -40px;
@@ -105,7 +112,11 @@
 		
 		var lives = [7,7,7];
 
-		var RightLeft =1;
+		function checkmap(){
+			if (enemies.length == 0 && wave <= 1){
+				enemies=[{x:50, y:50},{x:250, y:50}, {x:450, y:50}, {x:530, y:50}];
+			}
+		}
 
 		function displayHero(){
 			document.getElementById('hero').style['top']=hero.y+"px";
@@ -123,34 +134,12 @@
 		function displayWavey(){
 			var output="";
 			for(var i = 0; i < wavey.length; i++){
-				output +="<div class='enemy1' style='top:"+wavey[i].y+"px; left:"+wavey[i].x+"px;'></div>";
+				output +="<div class='enemy2' style='top:"+wavey[i].y+"px; left:"+wavey[i].x+"px;'></div>";
 			}
 			document.getElementById('wavey').innerHTML = output;
 		}
 		
-		// function moveWavey(){
-		// 	for(i = 0; i < wavey.length; i++){
-		// 		if(wavey[i].y > 670){
-		// 			wavey[i].y=0;
-		// 			wavey[i].x=Math.random()*530;
-		// 		}
-				
-		// 		if(wavey[i].RightLeft == 1){
-		// 			wavey[i].x+=2.5;
-		// 			if(wavey[i].x >= 540){
-		// 				wavey[i].RightLeft = 0;
-		// 			}
-		// 		}
-
-		// 		if (wavey[i].RightLeft == 0){
-		// 			wavey[i].x -= 2.5;
-		// 			if(wavey[i].x <= 0){
-		// 				wavey[i].RightLeft = 1;			
-		// 			}
-					
-		// 		}
-		// 		}
-		// 	}
+	
 		
 			
 		function displayEnemies(){
@@ -287,6 +276,7 @@
 
 
 		function gameloop(){
+			checkmap();
 			displayHero();
 			displayEnemies();
 			moveEnemies();
@@ -296,7 +286,6 @@
 			displayScore();
 			death();
 			displayLives();
-			// moveWavey();
 			displayWavey();
 			
 		}
@@ -325,8 +314,8 @@
 						
 						score -= 0;
 						lives.length = lives.length - 1;
-						enemies = []
-						wavey=[]
+						enemies = [];
+						wavey=[];
 						displayScore();
 						hero.x = 300;
 						hero.y = 600;
@@ -402,7 +391,8 @@
 		// GOALS 
 		//1. Make the enemies more spread out -DONE
 		//2. Make the second wave of enemies containe ones that move side to side -DONE!!!!!
-		//3. Make it so that when you die the board resets and you dont lose all three lives in one go
+		//3. Make it so that when you die the board resets and you dont lose all three lives in one go -DONE
+		//4. Now fix that -DONE 
 
 
 	</script>
